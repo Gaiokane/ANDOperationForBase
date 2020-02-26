@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Gaiokane;
 
 namespace ANDOperationForBase
 {
@@ -17,20 +18,26 @@ namespace ANDOperationForBase
             InitializeComponent();
         }
 
+        string appsetting1, appsetting2, appsetting4, appsetting8, appsetting16, appsetting32, appsetting64, appsetting128, appsetting256, appsetting512;
+
         #region 窗体加载事件
         private void Form1_Load(object sender, EventArgs e)
         {
+            getDefaultAppSettings();
+            setDefaultAppSettingsIfIsNullOrEmpty();
+            getDefaultAppSettings();
+
             //label1.Text = (128 & 256).ToString();
-            chkBox1.Text = "污染源";
-            chkBox2.Text = "客户";
-            chkBox4.Text = "供应商";
-            chkBox8.Text = "考核单位";
-            chkBox16.Text = "分包商";
-            chkBox32.Text = "生产厂商";
-            chkBox64.Text = "鉴定机构";
-            chkBox128.Text = "运营商";
-            chkBox256.Text = "256";
-            chkBox512.Text = "512";
+            chkBox1.Text = appsetting1;// "污染源";
+            chkBox2.Text = appsetting2;// "客户";
+            chkBox4.Text = appsetting4;// "供应商";
+            chkBox8.Text = appsetting8;// "考核单位";
+            chkBox16.Text = appsetting16;// "分包商";
+            chkBox32.Text = appsetting32;// "生产厂商";
+            chkBox64.Text = appsetting64;// "鉴定机构";
+            chkBox128.Text = appsetting128;// "运营商";
+            chkBox256.Text = appsetting256;// "256";
+            chkBox512.Text = appsetting512;// "512";
 
             txtBoxValue.Focus();
         }
@@ -205,5 +212,63 @@ namespace ANDOperationForBase
             return result;
         }
         #endregion
+
+        private void getDefaultAppSettings()
+        {
+            appsetting1 = RWConfig.GetappSettingsValue("1", "./ANDOperationForBase.exe");
+            appsetting2 = RWConfig.GetappSettingsValue("2", "./ANDOperationForBase.exe");
+            appsetting4 = RWConfig.GetappSettingsValue("4", "./ANDOperationForBase.exe");
+            appsetting8 = RWConfig.GetappSettingsValue("8", "./ANDOperationForBase.exe");
+            appsetting16 = RWConfig.GetappSettingsValue("16", "./ANDOperationForBase.exe");
+            appsetting32 = RWConfig.GetappSettingsValue("32", "./ANDOperationForBase.exe");
+            appsetting64 = RWConfig.GetappSettingsValue("64", "./ANDOperationForBase.exe");
+            appsetting128 = RWConfig.GetappSettingsValue("128", "./ANDOperationForBase.exe");
+            appsetting256 = RWConfig.GetappSettingsValue("256", "./ANDOperationForBase.exe");
+            appsetting512 = RWConfig.GetappSettingsValue("512", "./ANDOperationForBase.exe");
+        }
+
+        private void setDefaultAppSettingsIfIsNullOrEmpty()
+        {
+            if (string.IsNullOrEmpty(appsetting1))
+            {
+                RWConfig.SetappSettingsValue("1", "1", "./ANDOperationForBase.exe");
+            }
+            if (string.IsNullOrEmpty(appsetting2))
+            {
+                RWConfig.SetappSettingsValue("2", "2", "./ANDOperationForBase.exe");
+            }
+            if (string.IsNullOrEmpty(appsetting4))
+            {
+                RWConfig.SetappSettingsValue("4", "4", "./ANDOperationForBase.exe");
+            }
+            if (string.IsNullOrEmpty(appsetting8))
+            {
+                RWConfig.SetappSettingsValue("8", "8", "./ANDOperationForBase.exe");
+            }
+            if (string.IsNullOrEmpty(appsetting16))
+            {
+                RWConfig.SetappSettingsValue("16", "16", "./ANDOperationForBase.exe");
+            }
+            if (string.IsNullOrEmpty(appsetting32))
+            {
+                RWConfig.SetappSettingsValue("32", "32", "./ANDOperationForBase.exe");
+            }
+            if (string.IsNullOrEmpty(appsetting64))
+            {
+                RWConfig.SetappSettingsValue("64", "64", "./ANDOperationForBase.exe");
+            }
+            if (string.IsNullOrEmpty(appsetting128))
+            {
+                RWConfig.SetappSettingsValue("128", "128", "./ANDOperationForBase.exe");
+            }
+            if (string.IsNullOrEmpty(appsetting256))
+            {
+                RWConfig.SetappSettingsValue("256", "256", "./ANDOperationForBase.exe");
+            }
+            if (string.IsNullOrEmpty(appsetting512))
+            {
+                RWConfig.SetappSettingsValue("512", "512", "./ANDOperationForBase.exe");
+            }
+        }
     }
 }
